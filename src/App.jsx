@@ -8,7 +8,7 @@ import FullArticleList from "./components/FullArticleList";
 import * as api from "./api";
 
 function App() {
-  const initialSelection = api.fetchArticles();
+  const initialSelection = api.getArticles().articles;
   const [articleSelection, setArticleSelection] =
     useState(initialSelection);
 
