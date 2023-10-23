@@ -12,13 +12,10 @@ const ArticleResults = ({
 
   useEffect(() => {
     setIsLoading(true);
-    fetch(
-      "https://bc-news-public-princegeord.onrender.com/api/articles"
-    )
-      .then((response) => response.json())
-      .then((body) => {
-        console.log(body.articles);
-        setArticleSelection(body.articles);
+    api
+      .getArticles()
+      .then(({ articles }) => {
+        setArticleSelection(articles);
         setIsLoading(false);
         setError(null);
       })
@@ -47,24 +44,26 @@ const ArticleResults = ({
   ];
 
   return (
-    <section className="article-selection">
-      {topFour.map((article, index) => {
-        return (
-          <div
-            key={article.article_id}
-            className={`article-card card${index}`}
-          >
-            <h3>{article.title}</h3>
-            <img
-              className="article-card-img"
-              src={article.article_img_url}
-              alt={`Picture of ${article.title}`}
-            />
-          </div>
-        );
-      })}
+    <div>
+      <section className="article-selection">
+        {topFour.map((article, index) => {
+          return (
+            <div
+              key={article.article_id}
+              className={`article-card card${index}`}
+            >
+              <h3>{article.title}</h3>
+              <img
+                className="article-card-img"
+                src={article.article_img_url}
+                alt={`Picture of ${article.title}`}
+              />
+            </div>
+          );
+        })}
+      </section>
       <Link to="/articles">See full list of articles</Link>
-    </section>
+    </div>
   );
 };
 
