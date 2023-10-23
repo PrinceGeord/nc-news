@@ -5,11 +5,20 @@ import Header from "./components/Header";
 import Nav from "./components/Nav";
 
 function App() {
+  const [articleSelection, setArticleSelection] = useState;
+
   return (
     <>
       <Header />
       <Nav />
-      <Routes></Routes>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <ArticleResults articleSelection={articleSelection} />
+          }
+        />
+      </Routes>
       <div></div>
     </>
   );
