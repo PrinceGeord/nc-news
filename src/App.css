@@ -101,3 +101,21 @@ text-align:center;
   margin:1%;
   padding-left:1%;
 }
+
+.vote-section {
+ width: 15vw;
+ display:inline-flex;
+ justify-content:space-between;
+}
+
+.button-img {
+ border: 1px none black;
+  height: 4rem;
+  width: auto;
+  margin-left: 0.5rem;
+  box-shadow: 2px 2px 2px black;
+}
+
+.button-img:disabled {
+  filter: grayscale(1)
+}
