@@ -30,18 +30,18 @@ const CommentSection = ({ article_id }) => {
   if (error) {
     return <Error status={error.status} message={error.msg} />;
   }
-  const topFour = [
-    commentSelection[0],
-    commentSelection[1],
-    commentSelection[2],
-    commentSelection[3],
-  ];
+  // const topFour = [
+  //   commentSelection[0],
+  //   commentSelection[1],
+  //   commentSelection[2],
+  //   commentSelection[3],
+  // ];
   return (
     <section className="section-overlay">
       <h3>Comments</h3>
       <div className="comment-section">
         <ul>
-          {topFour.map((comment, index) => {
+          {commentSelection.map((comment, index) => {
             return (
               <li key={comment.comment_id}>
                 <CommentCard comment={comment} />
