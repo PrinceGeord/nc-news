@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import Loader from "./Loader";
 import Error from "./Error";
 import { useParams } from "react-router-dom";
+import CommentSection from "./CommentSection";
 
 const ViewArticle = () => {
   const [articleChoice, setArticleChoice] = useState("");
@@ -45,10 +46,11 @@ const ViewArticle = () => {
       <h4>Votes: {articleChoice.votes}</h4>
       <img
         src={articleChoice.article_img_url}
-        alt={`Picture of ${articleChoice.title}`}
+        alt={`Picture relating to ${articleChoice.topic}`}
       />
       <p>{articleChoice.body}</p>
       <h5>Comments: {articleChoice.comment_count}</h5>
+      <CommentSection article_id={articleChoice.article_id} />
     </>
   );
 };
