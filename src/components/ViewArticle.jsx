@@ -45,13 +45,11 @@ const ViewArticle = () => {
     <>
       <h1>{articleChoice.title}</h1>
       <h3>Author: {articleChoice.author}</h3>
-
       <img
         src={articleChoice.article_img_url}
         alt={`Picture relating to ${articleChoice.topic}`}
       />
       <p>{articleChoice.body}</p>
-
       <VoteCount
         votes={articleChoice.votes}
         article_id={articleChoice.article_id}
