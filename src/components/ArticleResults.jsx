@@ -58,7 +58,7 @@ const ArticleResults = ({
               <img
                 className="article-card-img"
                 src={article.article_img_url}
-                alt={`Picture of ${article.title}`}
+                alt={`Picture relating to ${article.topic}`}
               />
             </Link>
           );
