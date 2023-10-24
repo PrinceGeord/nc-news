@@ -5,3 +5,11 @@ export const getArticles = () => {
     return response.json();
   });
 };
+
+export const getArticle = (article_id) => {
+  return fetch(
+    `https://bc-news-public-princegeord.onrender.com/api/articles/${article_id}`
+  ).then((response) => {
+    return response.json();
+  });
+};

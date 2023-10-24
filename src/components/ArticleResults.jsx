@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import * as api from "../api";
 import { useState, useEffect } from "react";
 import Loader from "./Loader";
+import Error from "./Error";
 
 const ArticleResults = ({
   articleSelection,
@@ -48,7 +49,8 @@ const ArticleResults = ({
       <section className="article-selection">
         {topFour.map((article, index) => {
           return (
-            <div
+            <Link
+              to={`/articles/${article.article_id}`}
               key={article.article_id}
               className={`article-card card${index}`}
             >
@@ -58,7 +60,7 @@ const ArticleResults = ({
                 src={article.article_img_url}
                 alt={`Picture of ${article.title}`}
               />
-            </div>
+            </Link>
           );
         })}
       </section>
