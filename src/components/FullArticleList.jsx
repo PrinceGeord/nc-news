@@ -35,6 +35,9 @@ const FullArticleList = ({
           >
             <h3>{article.title}</h3>
             <h4>Topic: {article.topic}</h4>
+            <h5>
+              Votes: {article.votes} Comments: {article.comment_count}
+            </h5>
             <img
               className="article-card-img"
               src={article.article_img_url}

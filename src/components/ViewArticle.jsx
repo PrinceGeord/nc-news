@@ -43,7 +43,17 @@ const ViewArticle = () => {
     <>
       <h1>{articleChoice.title}</h1>
       <h3>Author: {articleChoice.author}</h3>
-      <h4>Votes: {articleChoice.votes}</h4>
+      <h4>
+        Votes: {articleChoice.votes}{" "}
+        <input
+          type="image"
+          alt="click here to upvote this article"
+        ></input>
+        <input
+          type="image"
+          alt="click here to downvote this article"
+        ></input>
+      </h4>
       <img
         src={articleChoice.article_img_url}
         alt={`Picture relating to ${articleChoice.topic}`}

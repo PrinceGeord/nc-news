@@ -30,7 +30,16 @@ const CommentSection = ({ article_id }) => {
   if (error) {
     return <Error status={error.status} message={error.msg} />;
   }
-
+  if (!commentSelection) {
+    return (
+      <section className="section-overlay">
+        <h3>Comments</h3>
+        <div className="comment-section">
+          <h2> No comments yet. Be the first!</h2>
+        </div>
+      </section>
+    );
+  }
   return (
     <section className="section-overlay">
       <h3>Comments</h3>
