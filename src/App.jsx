@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import Nav from "./components/Nav";
 import ArticleResults from "./components/ArticleResults";
 import FullArticleList from "./components/FullArticleList";
+import ViewArticle from "./components/ViewArticle";
 import * as api from "./api";
 
 function App() {
@@ -29,8 +30,15 @@ function App() {
         <Route
           path="/articles"
           element={
-            <FullArticleList articleSelection={articleSelection} />
+            <FullArticleList
+              articleSelection={articleSelection}
+              setArticleSelection={setArticleSelection}
+            />
           }
+        />
+        <Route
+          path="/articles/:article_id"
+          element={<ViewArticle />}
         />
       </Routes>
     </>
