@@ -4,12 +4,14 @@ import Loader from "./Loader";
 import Error from "./Error";
 import { useParams } from "react-router-dom";
 import CommentSection from "./CommentSection";
+import VoteCount from "./VoteCount";
 
 const ViewArticle = () => {
   const [articleChoice, setArticleChoice] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const { article_id } = useParams();
+
   useEffect(() => {
     setIsLoading(true);
     api
@@ -43,23 +45,18 @@ const ViewArticle = () => {
     <>
       <h1>{articleChoice.title}</h1>
       <h3>Author: {articleChoice.author}</h3>
-      <h4>
-        Votes: {articleChoice.votes}{" "}
-        <input
-          type="image"
-          alt="click here to upvote this article"
-        ></input>
-        <input
-          type="image"
-          alt="click here to downvote this article"
-        ></input>
-      </h4>
+
       <img
         src={articleChoice.article_img_url}
         alt={`Picture relating to ${articleChoice.topic}`}
       />
       <p>{articleChoice.body}</p>
-      <h5>Comments: {articleChoice.comment_count}</h5>
+
+      <VoteCount
+        votes={articleChoice.votes}
+        article_id={articleChoice.article_id}
+      />
+      <h3>Comments: {articleChoice.comment_count}</h3>
       <CommentSection article_id={articleChoice.article_id} />
     </>
   );

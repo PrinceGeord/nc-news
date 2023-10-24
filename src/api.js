@@ -21,3 +21,33 @@ export const getArticleComments = (article_id) => {
     return response.json();
   });
 };
+
+export const upVote = (article_id) => {
+  return fetch(
+    `https://bc-news-public-princegeord.onrender.com/api/articles/${article_id}`,
+    {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ inc_votes: 1 }),
+    }
+  ).then((response) =>
+    response.json().then((json) => console.log(json))
+  );
+};
+
+export const downVote = (article_id) => {
+  return fetch(
+    `https://bc-news-public-princegeord.onrender.com/api/articles/${article_id}`,
+    {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ inc_votes: -1 }),
+    }
+  ).then((response) =>
+    response.json().then((json) => console.log(json))
+  );
+};
