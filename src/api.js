@@ -34,3 +34,26 @@ export const patchVotes = (article_id, value) => {
     }
   ).then((response) => response.json());
 };
+
+export const postComment = ({ article_id }, formJson) => {
+  return fetch(
+    `https://bc-news-public-princegeord.onrender.com/api/articles/${article_id}/comments`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formJson),
+    }
+  ).then((response) => {
+    return response.json();
+  });
+};
+
+export const getUsers = () => {
+  return fetch(
+    `https://bc-news-public-princegeord.onrender.com/api/users`
+  ).then((response) => {
+    return response.json();
+  });
+};
