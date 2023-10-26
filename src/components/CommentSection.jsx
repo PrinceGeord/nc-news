@@ -4,10 +4,39 @@ import * as api from "../api";
 import Loader from "./Loader";
 import Error from "./Error";
 
+import AddComment from "./AddComment";
+
 const CommentSection = ({ article_id }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const [commentSelection, setCommentSelection] = useState([]);
+  const [buttonClicked, setButtonClicked] = useState(false);
+  const [users, setUsers] = useState([
+    "tickle122",
+    "grumpy19",
+    "cooljmessy",
+    "jessjelly",
+    "happyamy2016",
+  ]);
+
+  let addCommentButton;
+
+  if (!buttonClicked) {
+    addCommentButton = (
+      <button
+        onClick={() => {
+          setButtonClicked(true);
+        }}
+      >
+        Got something to say? Click here to leave a comment!{" "}
+      </button>
+    );
+  }
+  if (buttonClicked) {
+    addCommentButton = (
+      <AddComment article_id={article_id} users={users} />
+    );
+  }
 
   useEffect(() => {
     setIsLoading(true);
@@ -32,29 +61,36 @@ const CommentSection = ({ article_id }) => {
   }
   if (!commentSelection) {
     return (
-      <section className="section-overlay">
-        <h3>Comments</h3>
-        <div className="comment-section">
-          <h2> No comments yet. Be the first!</h2>
-        </div>
-      </section>
+      <>
+        {" "}
+        <AddComment article_id={article_id} users={users} />
+        <section className="section-overlay">
+          <h3>Comments</h3>
+          <div className="comment-section">
+            <h2> No comments yet. Be the first!</h2>
+          </div>
+        </section>
+      </>
     );
   }
   return (
-    <section className="section-overlay">
-      <h3>Comments</h3>
-      <div className="comment-section">
-        <ul>
-          {commentSelection.map((comment, index) => {
-            return (
-              <li key={comment.comment_id}>
-                <CommentCard comment={comment} />
-              </li>
-            );
-          })}
-        </ul>
-      </div>
-    </section>
+    <>
+      <section className="section-overlay">
+        <h3>Comments</h3>
+        <div className="comment-section">
+          <ul>
+            <li>{addCommentButton}</li>
+            {commentSelection.map((comment, index) => {
+              return (
+                <li key={comment.comment_id}>
+                  <CommentCard comment={comment} />
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      </section>
+    </>
   );
 };
 
