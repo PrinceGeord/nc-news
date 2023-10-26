@@ -11,15 +11,38 @@ const FullArticleList = ({
 }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [order, setOrder] = useState(0);
+  const [sortBy, setSortBy] = useState("");
 
   useEffect(() => {
     setIsLoading(true);
-    api.getArticles(topicSelection).then(({ articles }) => {
-      setArticleSelection(articles);
-      setIsLoading(false);
-      setError(null);
-    });
-  }, []);
+    api
+      .getArticles(topicSelection, sortBy, order)
+      .then(({ articles }) => {
+        setArticleSelection(articles);
+        setIsLoading(false);
+        setError(null);
+      });
+  }, [order]);
+
+  const toggleOrder = (event) => {
+    event.preventDefault();
+    if (order === 0) {
+      setOrder(1);
+    } else setOrder(0);
+  };
+  const handleChange = (event) => {
+    event.preventDefault();
+    setSortBy(event.target.value);
+  };
+  const sortByObj = {
+    date: ["Newest to oldest", "Oldest to newest"],
+    comment_count: [
+      "Most commented to least commented",
+      "Least commented to most commented",
+    ],
+    votes: ["Most hoots given 🦉", "Most booted 👟"],
+  };
 
   if (isLoading) return <Loader />;
   if (error)
@@ -27,6 +50,14 @@ const FullArticleList = ({
 
   return (
     <section>
+      <select onChange={handleChange}>
+        <option value="date">{sortByObj.date[order]}</option>
+        <option value="comment_count">
+          {sortByObj.comment_count[order]}
+        </option>
+        <option value="votes">{sortByObj.votes[order]}</option>
+      </select>
+      <button onClick={toggleOrder}>Toggle order</button>
       {articleSelection.map((article, index) => {
         return (
           <Link
