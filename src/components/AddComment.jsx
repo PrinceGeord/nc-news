@@ -2,16 +2,13 @@ import { useState } from "react";
 import * as api from "../api";
 
 const AddComment = ({ article_id, users }) => {
-  const [newComment, setNewComment] = useState("");
   const [formFilled, setFormFilled] = useState(false);
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
     const form = event.target;
-
     const formData = new FormData(form);
-
     const formJson = Object.fromEntries(formData.entries());
     if (formJson.body.length < 1) {
       setFormFilled(false);

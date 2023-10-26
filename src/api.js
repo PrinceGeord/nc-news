@@ -1,6 +1,10 @@
-export const getArticles = () => {
+export const getArticles = (topicSelection) => {
+  let query = "";
+  if (topicSelection) {
+    query = `?topic=${topicSelection}`;
+  }
   return fetch(
-    "https://bc-news-public-princegeord.onrender.com/api/articles"
+    `https://bc-news-public-princegeord.onrender.com/api/articles${query}`
   ).then((response) => {
     return response.json();
   });
@@ -53,6 +57,14 @@ export const postComment = (article_id, formJson) => {
 export const getUsers = () => {
   return fetch(
     `https://bc-news-public-princegeord.onrender.com/api/users`
+  ).then((response) => {
+    return response.json();
+  });
+};
+
+export const getTopics = () => {
+  return fetch(
+    `https://bc-news-public-princegeord.onrender.com/api/topics`
   ).then((response) => {
     return response.json();
   });
