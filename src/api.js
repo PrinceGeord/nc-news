@@ -35,7 +35,7 @@ export const patchVotes = (article_id, value) => {
   ).then((response) => response.json());
 };
 
-export const postComment = ({ article_id }, formJson) => {
+export const postComment = (article_id, formJson) => {
   return fetch(
     `https://bc-news-public-princegeord.onrender.com/api/articles/${article_id}/comments`,
     {
