@@ -57,3 +57,11 @@ export const getUsers = () => {
     return response.json();
   });
 };
+
+export const getTopics = () => {
+  return fetch(
+    `https://bc-news-public-princegeord.onrender.com/api/topics`
+  ).then((response) => {
+    return response.json();
+  });
+};

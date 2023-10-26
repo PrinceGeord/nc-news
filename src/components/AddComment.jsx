@@ -2,7 +2,6 @@ import { useState } from "react";
 import * as api from "../api";
 
 const AddComment = ({ article_id, users }) => {
-  const [newComment, setNewComment] = useState("");
   const [formFilled, setFormFilled] = useState(false);
 
   const handleSubmit = (event) => {

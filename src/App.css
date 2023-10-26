@@ -120,3 +120,15 @@ text-align:center;
 .button-img:disabled {
   filter: grayscale(1)
 }
+
+.topic-section {
+  display:inline-flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.topic {
+  border: 2px black solid;
+  margin:5px;
+  padding: 5px;
+}
