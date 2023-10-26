@@ -1,6 +1,10 @@
-export const getArticles = () => {
+export const getArticles = (topicSelection) => {
+  let query = "";
+  if (topicSelection) {
+    query = `?topic=${topicSelection}`;
+  }
   return fetch(
-    "https://bc-news-public-princegeord.onrender.com/api/articles"
+    `https://bc-news-public-princegeord.onrender.com/api/articles${query}`
   ).then((response) => {
     return response.json();
   });

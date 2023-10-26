@@ -7,13 +7,14 @@ import Error from "./Error";
 const FullArticleList = ({
   articleSelection,
   setArticleSelection,
+  topicSelection,
 }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     setIsLoading(true);
-    api.getArticles().then(({ articles }) => {
+    api.getArticles(topicSelection).then(({ articles }) => {
       setArticleSelection(articles);
       setIsLoading(false);
       setError(null);

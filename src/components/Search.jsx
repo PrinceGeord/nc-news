@@ -4,10 +4,9 @@ import Loader from "./Loader";
 import Error from "./Error";
 import { Link } from "react-router-dom";
 
-const Search = () => {
+const Search = ({ setTopicSelection, topicSelection }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [topicSelection, setTopicSelection] = useState(false);
 
   useEffect(() => {
     setIsLoading(true);
@@ -48,9 +47,17 @@ const Search = () => {
         <ul>
           {topicSelection.map((topic, index) => {
             return (
-              <li key={topic + index} className="topic">
-                <h3>{topic.slug}</h3>
-                <p>{topic.description}</p>
+              <li
+                key={topic.slug + index}
+                className="topic"
+                onClick={() => {
+                  setTopicSelection(topic.slug);
+                }}
+              >
+                <Link to="/articles">
+                  <h3>{topic.slug}</h3>
+                  <p>{topic.description}</p>
+                </Link>
               </li>
             );
           })}

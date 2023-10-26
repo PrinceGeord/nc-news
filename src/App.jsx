@@ -13,6 +13,7 @@ function App() {
   const initialSelection = api.getArticles().articles;
   const [articleSelection, setArticleSelection] =
     useState(initialSelection);
+  const [topicSelection, setTopicSelection] = useState(null);
 
   return (
     <>
@@ -32,6 +33,7 @@ function App() {
           path="/articles"
           element={
             <FullArticleList
+              topicSelection={topicSelection}
               articleSelection={articleSelection}
               setArticleSelection={setArticleSelection}
             />
@@ -45,8 +47,8 @@ function App() {
           path="/search"
           element={
             <Search
-              articleSelection={articleSelection}
-              setArticleSelection={setArticleSelection}
+              setTopicSelection={setTopicSelection}
+              topicSelection={topicSelection}
             />
           }
         />

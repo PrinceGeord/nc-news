@@ -8,9 +8,7 @@ const AddComment = ({ article_id, users }) => {
     event.preventDefault();
 
     const form = event.target;
-
     const formData = new FormData(form);
-
     const formJson = Object.fromEntries(formData.entries());
     if (formJson.body.length < 1) {
       setFormFilled(false);
