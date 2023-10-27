@@ -8,17 +8,20 @@ import FullArticleList from "./components/FullArticleList";
 import ViewArticle from "./components/ViewArticle";
 import * as api from "./api";
 import Search from "./components/Search";
+import LoginUser from "./components/LoginUser.jsx";
 
 function App() {
   const initialSelection = api.getArticles().articles;
   const [articleSelection, setArticleSelection] =
     useState(initialSelection);
   const [topicSelection, setTopicSelection] = useState(null);
+  const [user, setUser] = useState("tickle122");
 
   return (
     <>
       <Header />
       <Nav />
+      <LoginUser user={user} setUser={setUser} />
       <Routes>
         <Route
           path="/"
