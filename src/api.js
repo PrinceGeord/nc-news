@@ -50,7 +50,9 @@ export const patchVotes = (article_id, value) => {
   ).then((response) => response.json());
 };
 
-export const postComment = (article_id, formJson) => {
+export const postComment = (article_id, user, body) => {
+  const commentObj = { username: user, body };
+
   return fetch(
     `https://bc-news-public-princegeord.onrender.com/api/articles/${article_id}/comments`,
     {
@@ -58,10 +60,18 @@ export const postComment = (article_id, formJson) => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(formJson),
+      body: JSON.stringify(commentObj),
     }
   ).then((response) => {
     return response.json();
+  });
+};
+export const deleteComment = (comment_id) => {
+  return fetch(
+    `https://bc-news-public-princegeord.onrender.com/api/comments/${comment_id}`,
+    { method: "DELETE" }
+  ).then((response) => {
+    return "deleted";
   });
 };
 
@@ -78,14 +88,5 @@ export const getTopics = () => {
     `https://bc-news-public-princegeord.onrender.com/api/topics`
   ).then((response) => {
     return response.json();
-  });
-};
-
-export const deleteComment = (comment_id) => {
-  return fetch(
-    `https://bc-news-public-princegeord.onrender.com/api/comments/${comment_id}`,
-    { method: "DELETE" }
-  ).then((response) => {
-    return "deleted";
   });
 };

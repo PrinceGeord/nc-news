@@ -7,14 +7,13 @@ const AddComment = ({ article_id, user }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    const form = event.target;
-    const formData = new FormData(form);
-    const formJson = Object.fromEntries(formData.entries());
-    if (formJson.body.length < 1) {
+    const body = event.target[0].value;
+
+    if (body.length < 1) {
       setFormFilled(false);
     } else {
       setFormFilled(true);
-      api.postComment(article_id, formJson);
+      api.postComment(article_id, user, body);
     }
   };
 
@@ -22,7 +21,7 @@ const AddComment = ({ article_id, user }) => {
     return (
       <>
         <form
-          method="post"
+          // method="post"
           onSubmit={handleSubmit}
           className="comment"
         >
@@ -34,7 +33,9 @@ const AddComment = ({ article_id, user }) => {
               className="comment-field"
             />
           </label>
-          <button type="submit">Post comment!</button>
+          <button type="submit" value="body">
+            Post comment!
+          </button>
         </form>
       </>
     );
