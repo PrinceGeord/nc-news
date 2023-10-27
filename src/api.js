@@ -10,11 +10,10 @@ export const getArticles = (topicSelection, sortBy, order) => {
   if (order) {
     queries.push(`order=ASC`);
   }
-  const exampleQuery = "/api/articles?order=ASC&sort_by=author";
+
   if (queries.length > 0) {
     query = `?${queries.join("&")}`;
   }
-  console.log(query);
   return fetch(
     `https://bc-news-public-princegeord.onrender.com/api/articles${query}`
   ).then((response) => {
