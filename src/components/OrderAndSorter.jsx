@@ -21,13 +21,16 @@ const OrderAndSorter = ({ order, setOrder, setSortBy }) => {
   return (
     <section>
       <select onChange={handleChange}>
-        <option value="date">{sortByObj.date[order]}</option>
+        <option value="created_at">{sortByObj.date[order]}</option>
         <option value="comment_count">
           {sortByObj.comment_count[order]}
         </option>
         <option value="votes">{sortByObj.votes[order]}</option>
       </select>
-      <button onClick={toggleOrder}>Toggle order</button>
+      <button onClick={toggleOrder}>
+        {" "}
+        Click here to reverse order
+      </button>
     </section>
   );
 };
