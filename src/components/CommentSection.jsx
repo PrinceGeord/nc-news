@@ -6,18 +6,11 @@ import Error from "./Error";
 
 import AddComment from "./AddComment";
 
-const CommentSection = ({ article_id }) => {
+const CommentSection = ({ article_id, user }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const [commentSelection, setCommentSelection] = useState([]);
   const [buttonClicked, setButtonClicked] = useState(false);
-  const [users, setUsers] = useState([
-    "tickle122",
-    "grumpy19",
-    "cooljmessy",
-    "jessjelly",
-    "happyamy2016",
-  ]);
 
   let addCommentButton;
 
@@ -34,7 +27,7 @@ const CommentSection = ({ article_id }) => {
   }
   if (buttonClicked) {
     addCommentButton = (
-      <AddComment article_id={article_id} users={users} />
+      <AddComment article_id={article_id} user={user} />
     );
   }
 

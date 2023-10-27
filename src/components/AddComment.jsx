@@ -1,7 +1,7 @@
 import { useState } from "react";
 import * as api from "../api";
 
-const AddComment = ({ article_id, users }) => {
+const AddComment = ({ article_id, user }) => {
   const [formFilled, setFormFilled] = useState(false);
 
   const handleSubmit = (event) => {
@@ -27,16 +27,7 @@ const AddComment = ({ article_id, users }) => {
           className="comment"
         >
           <label>
-            username:
-            <input
-              type="text"
-              name="username"
-              maxLength="15"
-              className="username-field"
-            />
-          </label>
-          <label>
-            post:{" "}
+            {user}:
             <input
               type="text"
               name="body"

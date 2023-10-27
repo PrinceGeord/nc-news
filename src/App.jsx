@@ -44,7 +44,7 @@ function App() {
         />
         <Route
           path="/articles/:article_id"
-          element={<ViewArticle />}
+          element={<ViewArticle user={user} />}
         />
         <Route
           path="/search"
