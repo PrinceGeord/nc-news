@@ -1,7 +1,7 @@
 import * as api from "../api";
 import { useState, useEffect } from "react";
 import Loader from "./Loader";
-import Error from "./Error";
+import PageNotFound from "./PageNotFound";
 import { useParams } from "react-router-dom";
 import CommentSection from "./CommentSection";
 import VoteCount from "./VoteCount";
@@ -16,29 +16,22 @@ const ViewArticle = ({ user }) => {
     setIsLoading(true);
     api
       .getArticle(article_id)
-      .then(({ article }) => {
-        setArticleChoice(article);
+      .then((article) => {
+        setArticleChoice(article.article);
         setIsLoading(false);
         setError(null);
       })
-      .catch(
-        ({
-          response: {
-            status,
-            data: { msg },
-          },
-        }) => {
-          setError({ status, msg });
-          setIsLoading(false);
-        }
-      );
+      .catch((err) => {
+        setError("No Article");
+        setIsLoading(false);
+      });
   }, []);
 
   if (isLoading) {
     return <Loader />;
   }
   if (error) {
-    return <Error status={error.status} message={error.msg} />;
+    return <PageNotFound error={error} />;
   }
 
   return (

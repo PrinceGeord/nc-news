@@ -24,9 +24,16 @@ export const getArticles = (topicSelection, sortBy, order) => {
 export const getArticle = (article_id) => {
   return fetch(
     `https://bc-news-public-princegeord.onrender.com/api/articles/${article_id}`
-  ).then((response) => {
-    return response.json();
-  });
+  )
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Article not found");
+      }
+      return response.json();
+    })
+    .catch((error) => {
+      return Promise.reject(error);
+    });
 };
 
 export const getArticleComments = (article_id) => {
