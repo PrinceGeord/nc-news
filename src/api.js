@@ -80,3 +80,12 @@ export const getTopics = () => {
     return response.json();
   });
 };
+
+export const deleteComment = (comment_id) => {
+  return fetch(
+    `https://bc-news-public-princegeord.onrender.com/api/comments/${comment_id}`,
+    { method: "DELETE" }
+  ).then((response) => {
+    return "deleted";
+  });
+};

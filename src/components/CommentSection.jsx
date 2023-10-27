@@ -56,7 +56,7 @@ const CommentSection = ({ article_id, user }) => {
     return (
       <>
         {" "}
-        <AddComment article_id={article_id} users={users} />
+        <AddComment article_id={article_id} user={user} />
         <section className="section-overlay">
           <h3>Comments</h3>
           <div className="comment-section">
@@ -76,7 +76,7 @@ const CommentSection = ({ article_id, user }) => {
             {commentSelection.map((comment, index) => {
               return (
                 <li key={comment.comment_id}>
-                  <CommentCard comment={comment} />
+                  <CommentCard comment={comment} user={user} />
                 </li>
               );
             })}
