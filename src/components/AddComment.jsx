@@ -3,6 +3,7 @@ import * as api from "../api";
 
 const AddComment = ({ article_id, user }) => {
   const [formFilled, setFormFilled] = useState(false);
+  const [warning, setWarning] = useState(false);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -11,20 +12,21 @@ const AddComment = ({ article_id, user }) => {
 
     if (body.length < 1) {
       setFormFilled(false);
+      setWarning(true);
     } else {
       setFormFilled(true);
       api.postComment(article_id, user, body);
     }
   };
 
+  const warningBody = (
+    <p id="comment-warning">"Don't forget to write your comment!"</p>
+  );
+
   if (!formFilled) {
     return (
-      <>
-        <form
-          // method="post"
-          onSubmit={handleSubmit}
-          className="comment"
-        >
+      <div className="comment">
+        <form onSubmit={handleSubmit}>
           <label>
             {user}:
             <input
@@ -33,11 +35,13 @@ const AddComment = ({ article_id, user }) => {
               className="comment-field"
             />
           </label>
+
           <button type="submit" value="body">
             Post comment!
           </button>
         </form>
-      </>
+        {warning ? warningBody : null}
+      </div>
     );
   } else {
     return <p className="comment">Thanks for your post!</p>;
