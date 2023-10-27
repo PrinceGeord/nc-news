@@ -8,7 +8,8 @@ import FullArticleList from "./components/FullArticleList";
 import ViewArticle from "./components/ViewArticle";
 import * as api from "./api";
 import Search from "./components/Search";
-import LoginUser from "./components/LoginUser.jsx";
+import LoginUser from "./components/LoginUser";
+import PageNotFound from "./components/PageNotFound";
 
 function App() {
   const initialSelection = api.getArticles().articles;
@@ -55,6 +56,7 @@ function App() {
             />
           }
         />
+        <Route path="/*" element={<PageNotFound />} />
       </Routes>
     </>
   );

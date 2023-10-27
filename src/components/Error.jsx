@@ -1,8 +1,8 @@
 export default function Error() {
   return (
     <section>
-      <p>Error: {status}</p>
-      <p>Message: {msg}</p>
+      <p>Error:</p>
+      <p>Message: </p>
     </section>
   );
 }
