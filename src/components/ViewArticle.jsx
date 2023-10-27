@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 import CommentSection from "./CommentSection";
 import VoteCount from "./VoteCount";
 
-const ViewArticle = () => {
+const ViewArticle = ({ user }) => {
   const [articleChoice, setArticleChoice] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -55,7 +55,10 @@ const ViewArticle = () => {
         article_id={articleChoice.article_id}
       />
       <h3>Comments: {articleChoice.comment_count}</h3>
-      <CommentSection article_id={articleChoice.article_id} />
+      <CommentSection
+        article_id={articleChoice.article_id}
+        user={user}
+      />
     </>
   );
 };
